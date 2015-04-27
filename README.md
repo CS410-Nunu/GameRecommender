@@ -1,3 +1,1 @@
 # GameRecommender
-hi
-hello
