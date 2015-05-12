@@ -14,16 +14,18 @@ class SteamUser:
         self.GAME_LIBRARY_URL = str('http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=' + API_KEY + '&steamid=' + self.USER_ID + '&format=json')
         self.USER_INFO_URL = str('http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=' + API_KEY + '&steamids=' + self.USER_ID + '&format=json')
         self.games_dict = self.loadUserGames()
+        self.userAvatar = 'User avatar not set'
+        self.realName = 'Real name not set'
 
         try:
-            self.userAvatar = str(self.getUserAvatar())
+            self.userAvatar = str(self.loadUserAvatar())
         except KeyError as e:
-            self.userAvatar = 'Avatar Not Found'
+            self.userAvatar = 'Avatar not found'
 
         try:
-            self.realName = str(self.getRealName())
+            self.realName = str(self.loadRealName())
         except KeyError as e:
-            self.realName = 'Real Name Not Found'
+            self.realName = 'Real name not found'
 
 
     def loadUserGames(self):
@@ -39,13 +41,13 @@ class SteamUser:
         return games_list
 
 
-    def getUserAvatar(self):
+    def loadUserAvatar(self):
         response = urllib.urlopen(self.USER_INFO_URL)
         data = json.loads(response.read())
         return data['response']['players'][0]['avatarfull']
 
 
-    def getRealName(self):
+    def loadRealName(self):
         response = urllib.urlopen(self.USER_INFO_URL)
         data = json.loads(response.read())
         return data['response']['players'][0]['realname']
@@ -54,15 +56,20 @@ class SteamUser:
     def getUserGames(self):
         return self.games_dict
 
+    def getRealName(self):
+        return self.realName
+
+    def getUserAvatar(self):
+        return self.userAvatar
+
 
 
 #76561198075059171
 #76561198010203943
-test = SteamUser(76561198075059171)
-games_list = test.getUserGames()
-print games_list
-print test.realName
-print test.userAvatar
+test = SteamUser(76561198010203943)
+print test.getUserGames()
+print test.getRealName()
+print test.getUserAvatar()
 #76561198075059171
 #print games_list
 
