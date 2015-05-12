@@ -21,6 +21,6 @@ def getUserId(username):
 		steamid64 = soup.find("dt", text="steamID64").findNext("dd").contents[0]
 		return steamid64
 	
-print getUserId("jsakdjfksajdfjs")
-print getUserId("grimorder27")
-print getUserId("sonicace22")
+#print getUserId("jsakdjfksajdfjs")
+#print getUserId("grimorder27")
+#print getUserId("sonicace22")

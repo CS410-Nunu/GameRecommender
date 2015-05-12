@@ -1,4 +1,4 @@
-import urllib, json
+import urllib, json, getUserId
 
 API_KEY = 'A4CBB01B5DB13D02D5651075E467FD7C'
 #USER_ID = '76561197960434622'
@@ -18,7 +18,7 @@ class SteamUser:
         '''
 
         self.VANITY_URL = str('http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=' + API_KEY + '&vanityurl=' + vanity_name)
-        self.USER_ID = str(self.loadSteamID(self.VANITY_URL))
+        self.USER_ID = str(self.loadSteamID(self.VANITY_URL, vanity_name))
 
         #Checks if user's steam ID wasn't found
         if int(self.USER_ID) == -1:
@@ -47,19 +47,16 @@ class SteamUser:
             self.realName = 'Real name not found'
 
 
-    def loadSteamID(self, vanity_url):
+    def loadSteamID(self, vanity_url, vanity_name):
         response = urllib.urlopen(self.VANITY_URL)
         data = json.loads(response.read())
         response_num = data['response']['success']
         if response_num == 42:
-            print 'Vanity url not found'
-            return self.tempMethod(vanity_url)
+            print 'Vanity url not found, attempting to use "getUserId.py"'
+            return getUserId.getUserId(vanity_name)
         else:
             print 'Vanity url found'
             return int(data['response']['steamid'])
-
-    def tempMethod(self, vanity_url):
-        return -1
 
 
     def loadUserGames(self):
