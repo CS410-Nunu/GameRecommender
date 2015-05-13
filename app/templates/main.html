@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<title>Steam Game Reccomender</title>
-	<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
-    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='grayscale.css') }}">
+	<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style/bootstrap.css') }}">
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style/grayscale.css') }}">
 
     <!-- Custom Fonts -->
     <link href="font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -14,7 +14,6 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-    <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -48,11 +47,12 @@
         </div>
         <!-- /.container -->
     </nav>
-
     <!-- Intro Header -->
     <header class="intro">
         <div class="intro-body">
             <div class="container">
+                <!--<center><font size ="10" face="Arial Narrow">Steam Game Recommender</font></center>
+                <br><br><br><br><br>-->
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <form role="form">
@@ -65,9 +65,6 @@
                                 </div><!-- /input-group -->
                             </div><!-- form gorup -->
                         </form><!-- form -->
-                        <a href="#about" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
                       </div><!-- /.col-lg-6 -->
                     </div>
                 </div>
@@ -120,16 +117,15 @@
     </section>
 
 
-    <!-- jQuery -->
-    <script src=="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script src=static/js/jquery.js></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src=="{{ url_for('static', filename='bootstrap;.min.js') }}"></script>
+    <script src=static/js/bootstrap.min.js></script>
 
     <!-- Plugin JavaScript -->
-    <script src=="{{ url_for('static', filename='jquery.easing.min.js') }}"></script>
+    <script src=static/js/jquery.easing.min.js></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src=="{{ url_for('static', filename='grayscale.js') }}"></script>
+    <script src=static/js/grayscale.js></script>
 </body>
 </html>
