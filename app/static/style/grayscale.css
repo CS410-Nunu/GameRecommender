@@ -193,7 +193,7 @@ a:focus {
     border-radius: 100%!important;
     font-size: 40px;
     color: #fff;
-    background: 0 0;
+    background: url(/static/img/down138.png) no-repeat top center scroll;
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
@@ -207,6 +207,7 @@ a:focus {
 }
 
 .btn-circle i.animated {
+
     -webkit-transition-property: -webkit-transform;
     -webkit-transition-duration: 1s;
     -moz-transition-property: -moz-transform;
@@ -267,7 +268,8 @@ a:focus {
     width: 100%;
     padding: 50px 0;
     color: #fff;
-    background: url(/static/img/counterStrike.jpg) no-repeat center center scroll;
+    background: url(/static/img/counterStrike.jpg) no-repeat top center;
+    background-size: cover;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
