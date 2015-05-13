@@ -65,6 +65,10 @@ def getCluster(games):
 
 		row = cur.fetchone()
 
+		if row is None:
+			print game[0]
+			continue
+
 		if checkInClusters(row[1], clustersAdded) is True:
 			continue
 
@@ -126,7 +130,7 @@ def getInfo(recommendedList):
 
 	mylist = []
 
-	for item in recommendedList[0:10]:
+	for item in recommendedList[0:15]:
 		cur.execute("SELECT * FROM AppInfo WHERE gameID=?", (item[0],))
 		con.commit()
 		gameInfo = cur.fetchone()
@@ -145,16 +149,23 @@ app = Flask(__name__, template_folder = tmpl_dir)
 
 @app.route('/')
 def login(games=None):
+	#if redirect is True:
 	return render_template('main.html', games=games)
+	#else:
+		#return render_template('main.html', games=games)
 
 @app.route('/recommend', methods=['POST'])
 def recommend(userId=None):
 	#print request.form["userId"]
 	info = SteamUser(request.form["userId"])
-	games = info.getUserGames()
+	try:
+		games = info.getUserGames()
+	except ID_NOT_FOUND_EXCEPTION as e:
+		return 'Could Not Find User'
+
 	#print games
 	return render_template('main.html', games=getInfo(getCluster(games)))
-	#return redirect(url_for(''), games=games)
+	#return redirect(url_for('login', games=getInfo(getCluster(games))))
 
 if  __name__ == '__main__':
 	app.run(debug=True)

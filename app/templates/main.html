@@ -59,7 +59,7 @@
                                   <input type="text" class="form-control" placeholder="Enter your Steam nickname..." name="userId">
                                   <span class="input-group-btn">
                                     <!--<button class="btn btn-default" type="button">Go!</button>-->
-                                    <input type="submit" class = "btn btn-default" value="Submit">
+                                    <input type="submit" class = "btn btn-default" value="Submit"><i class='icon-spinner icon-spin icon-large'></i></input>
                                   </span>
                                 </div><!-- /input-group -->
                             </div><!-- form gorup -->
@@ -89,17 +89,35 @@
     </section>
 
     <!-- Games Section -->
-    <section id="download" class="content-section text-center">
+    <section id="games" class="content-section text-center">
         <div class="games-section">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <h2>My Games</h2>
-                    {% if games %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Recommended Games</h2>
+                    </div>
+                    {% if games is string %}
+                        <center>{{games}}</center>
+                    {% elif games %}
                         {% for game in games %}
-                            <p> Name: {{ game[2] }} </p>
+                            <div class="col-lg-4 col-sm-6 hero-feature">
+                                <img class="img-circle img-responsive img-center" src='http://cdn.akamai.steamstatic.com/steam/apps/{{game[0]}}/header.jpg' alt="">
+                                <h3>{{ game[2] }}</h3>
+                                <p>{{ game[1][0:100] }}...</p>
+                                <a href="http://store.steampowered.com/app/{{game[0]}}/" class="btn btn-default">Read More...</a>
+                                <p><br></p>
+                                <p><br></p>
+                                <p><br></p>
+                            </div>
+                            {% if loop.index is divisibleby 3 %}
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                    </div>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     {% else %}
-                        None
+                        <center>None</center>
                     {% endif %}
                 </div>
             </div>
