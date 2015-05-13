@@ -94,7 +94,7 @@ class SteamUser:
         return self.userAvatar
 
 
-
+'''
 #76561198075059171
 #76561198010203943
 test = SteamUser('secretasian1')
@@ -103,6 +103,7 @@ print test.getRealName()
 print test.getUserAvatar()
 #76561198075059171
 #print games_list
+'''
 
 '''
 response = urllib.urlopen(GAME_LIBRARY_URL)

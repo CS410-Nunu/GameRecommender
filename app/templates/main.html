@@ -20,7 +20,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  <span class="light">Steam Game Recomender</span>
+                    <i class="fa fa-play-circle"></i>  <span class="light">Steam Game Recommender</span>
                 </a>
             </div>
 
@@ -35,7 +35,7 @@
                         <a class="page-scroll" href="#about">About</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#download">Download</a>
+                        <a class="page-scroll" href="#games">Games</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -46,24 +46,27 @@
         </div>
         <!-- /.container -->
     </nav>
+
     <!-- Intro Header -->
     <header class="intro">
         <div class="intro-body">
             <div class="container">
-                <!--<center><font size ="10" face="Arial Narrow">Steam Game Recommender</font></center>
-                <br><br><br><br><br>-->
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <form role="form">
+                        <form role="form" action="{{ url_for('recommend')}}" method="POST">
                             <div class="form-group">
                                 <div class="input-group">
-                                  <input type="text" class="form-control" placeholder="Enter your Steam nickname..." id="'nickname">
+                                  <input type="text" class="form-control" placeholder="Enter your Steam nickname..." name="userId">
                                   <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Go!</button>
+                                    <!--<button class="btn btn-default" type="button">Go!</button>-->
+                                    <input type="submit" class = "btn btn-default" value="Submit">
                                   </span>
                                 </div><!-- /input-group -->
                             </div><!-- form gorup -->
                         </form><!-- form -->
+                        <!--<a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>-->
                       </div><!-- /.col-lg-6 -->
                     </div>
                 </div>
@@ -85,14 +88,19 @@
         </div>
     </section>
 
-    <!-- Download Section -->
+    <!-- Games Section -->
     <section id="download" class="content-section text-center">
-        <div class="download-section">
+        <div class="games-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Download Grayscale</h2>
-                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                    <h2>My Games</h2>
+                    {% if games %}
+                        {% for game in games %}
+                            <p> Name: {{ game[2] }} </p>
+                        {% endfor %}
+                    {% else %}
+                        None
+                    {% endif %}
                 </div>
             </div>
         </div>
