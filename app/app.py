@@ -157,11 +157,11 @@ def login(games=None):
 @app.route('/recommend', methods=['POST'])
 def recommend(userId=None):
 	#print request.form["userId"]
-	info = SteamUser(request.form["userId"])
 	try:
+		info = SteamUser(request.form["userId"])
 		games = info.getUserGames()
-	except ID_NOT_FOUND_EXCEPTION as e:
-		return 'Could Not Find User'
+	except:
+		return render_template('main.html', games='Could Not Find User')
 
 	#print games
 	return render_template('main.html', games=getInfo(getCluster(games)))
